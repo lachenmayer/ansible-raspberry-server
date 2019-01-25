@@ -1,6 +1,0 @@
-# Configuration variables for geerlingguy.security.
-# See https://galaxy.ansible.com/geerlingguy/security for info.
-
-security_ssh_port: 22
-security_sudoers_passwordless:
-  - pi

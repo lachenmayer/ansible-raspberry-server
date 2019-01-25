@@ -1,0 +1,9 @@
+# geerlingguy.security - see https://galaxy.ansible.com/geerlingguy/security
+
+security_ssh_port: 22
+security_sudoers_passwordless:
+  - pi
+
+# geerlingguy.ntp - see https://galaxy.ansible.com/geerlingguy/ntp
+
+ntp_timezone: Europe/London

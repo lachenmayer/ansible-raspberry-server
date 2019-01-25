@@ -4,7 +4,8 @@
   become: true
   vars_files:
     - ./vars/auth.yml
-    - ./vars/security.yml
+    - ./vars/main.yml
   roles:
     - basics
     - geerlingguy.security
+    - geerlingguy.ntp
