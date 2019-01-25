@@ -1,3 +1,12 @@
+# 0. Install ansible & passlib
+
+```
+pip install ansible passlib
+```
+
+- [Ansible](https://docs.ansible.com/ansible/latest/index.html) automates the setup of the Pi once Raspbian is installed on it.
+- Passlib is needed to generate the user password.
+
 # 1. Follow official instructions for getting Raspbian onto your SD card.
 
 Using NOOBS:
@@ -28,20 +37,24 @@ cp ./wpa_supplicant.conf /Volumes/boot/
 
 # 3. Put the SD card in the Pi & start it up
 
-# 4. Find the Pi on the network
+# 4. Try logging in to the Pi
 
 ```
-nmap -sn 192.168.0.1/24
-```
-
-# 5. Try logging in to the Pi
-
-```
-ssh pi@<the IP address you just found>
+ssh pi@raspberrypi.local
 ```
 
 The default password is `raspberry`.
 
-If you're able to log in, replace the IP address in the `hosts` file with your Pi's IP address.
+If you're able to log in, you're all good :)
 
-# 6. Add your SSH key
+# 5. Add your SSH key & change your password
+
+```
+ansible-playbook auth.yml
+```
+
+This will prompt you for the location of your SSH public key and a password for the `pi` user.
+
+In most cases, you should be fine with the default value for the SSH key, ie. if you don't know what you should input there, keep the default by pressing enter.
+
+The output of this step is saved in `vars/auth.yml`.

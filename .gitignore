@@ -1,2 +1,3 @@
 *.img
 *.retry
+vars/auth.yml

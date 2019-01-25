@@ -1,8 +1,8 @@
-- name:
+- name: Main playbook
   hosts: pi
   remote_user: pi
   become: true
+  vars_files:
+    - ./vars/auth.yml
   roles:
     - basics
-  vars:
-    ssh_key: ~/.ssh/id_ed25519_lachenmayer.pub
