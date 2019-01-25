@@ -1,0 +1,15 @@
+- name: Update apt package cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Update apt packages
+  apt:
+    upgrade: safe
+
+- name: Add SSH key
+  authorized_key:
+    user: pi
+    key: '{{ item }}'
+  with_file:
+    - '{{ ssh_key }}'

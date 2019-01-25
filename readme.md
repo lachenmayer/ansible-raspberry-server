@@ -42,4 +42,6 @@ ssh pi@<the IP address you just found>
 
 The default password is `raspberry`.
 
-If you're able to log in, note down the IP address.
+If you're able to log in, replace the IP address in the `hosts` file with your Pi's IP address.
+
+# 6. Add your SSH key
