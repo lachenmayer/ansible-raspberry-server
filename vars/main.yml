@@ -7,3 +7,7 @@ security_sudoers_passwordless:
 # geerlingguy.ntp - see https://galaxy.ansible.com/geerlingguy/ntp
 
 ntp_timezone: Europe/London
+
+# nodesource.node - see https://galaxy.ansible.com/nodesource/node
+
+nodejs_version: '10.x'
