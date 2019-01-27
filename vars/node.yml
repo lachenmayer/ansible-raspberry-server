@@ -1,0 +1,3 @@
+# nodesource.node - see https://galaxy.ansible.com/nodesource/node
+
+nodejs_version: '10.x'

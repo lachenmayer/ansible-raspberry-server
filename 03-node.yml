@@ -1,0 +1,9 @@
+- name: Makes a Raspberry Pi ready to run Node.js apps.
+  hosts: pi
+  remote_user: pi
+  become: yes
+  vars_files:
+    - ./vars/node.yml
+  roles:
+    - nodesource.node
+    - node

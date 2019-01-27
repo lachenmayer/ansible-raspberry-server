@@ -1,4 +1,4 @@
-- name: Makes a Raspberry Pi ready to run Node.js apps.
+- name: Sets up user accounts and applies basic updates & hardening.
   hosts: pi
   remote_user: pi
   become: yes
@@ -9,5 +9,3 @@
     - basics
     - geerlingguy.security
     - geerlingguy.ntp
-    - nodesource.node
-    - node

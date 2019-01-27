@@ -1,4 +1,4 @@
-- name: Add SSH key for passwordless login
+- name: Add SSH key for passwordless login (pi)
   authorized_key:
     user: pi
     key: '{{ item }}'
@@ -9,6 +9,25 @@
   user:
     name: pi
     password: '{{ user_password }}'
+
+- name: Create worker group
+  group:
+    name: worker
+
+# sudoers list is enforced using the security_sudoers_passwordless variable defined in vars/base.yml
+# worker should not be in the sudoers list!
+- name: Create worker user without sudo permissions
+  user:
+    name: worker
+    group: worker
+    shell: /bin/bash
+
+- name: Add SSH key for passwordless login (worker)
+  authorized_key:
+    user: worker
+    key: '{{ item }}'
+  with_file:
+    - '{{ ssh_public_key_path }}'
 
 - name: Update apt package cache
   apt:
