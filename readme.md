@@ -50,7 +50,7 @@ If you're able to log in, you're all good :)
 # 5. Add your SSH key & change your password
 
 ```
-ansible-playbook auth.yml
+ansible-playbook 01-auth.yml
 ```
 
 This will prompt you for the location of your SSH public key and a password for the `pi` user.
