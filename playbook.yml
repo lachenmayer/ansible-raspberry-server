@@ -1,7 +1,7 @@
 - name: Main playbook
   hosts: pi
   remote_user: pi
-  become: true
+  become: yes
   vars_files:
     - ./vars/auth.yml
     - ./vars/main.yml
@@ -10,3 +10,4 @@
     - geerlingguy.security
     - geerlingguy.ntp
     - nodesource.node
+    - node

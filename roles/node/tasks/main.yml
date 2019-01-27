@@ -1,0 +1,37 @@
+# See https://github.com/sindresorhus/guides/blob/master/npm-global-without-sudo.md
+
+- name: Create user-owned global package directory
+  become: no
+  file:
+    path: ~/.npm-packages
+    state: directory
+
+- name: Add global package directory to .npmrc
+  become: no
+  copy:
+    dest: ~/.npmrc
+    content: 'prefix=${HOME}/.npm-packages'
+
+- name: Add global package directory to PATH
+  become: no
+  blockinfile:
+    path: ~/.bashrc
+    block: |
+      NPM_PACKAGES="${HOME}/.npm-packages"
+      export PATH="$NPM_PACKAGES/bin:$PATH"
+      # Unset manpath so we can inherit from /etc/manpath via the `manpath` command
+      unset MANPATH # delete if you already modified MANPATH elsewhere in your config
+      export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
+
+- name: Install pm2
+  become: no
+  command: npm install -g pm2
+  args:
+    creates: ~/.npm-packages/bin/pm2
+
+- name: Start pm2 on boot
+  become: yes
+  # This is a bit strange, but it's what pm2 tells you to run when you run `pm2 startup`.
+  shell: 'env PATH=$PATH:/usr/bin /home/pi/.npm-packages/bin/pm2 startup systemd -u pi --hp /home/pi'
+  args:
+    creates: /etc/systemd/system/pm2-pi.service
