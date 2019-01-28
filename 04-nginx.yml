@@ -1,0 +1,10 @@
+- name: Installs the nginx web server & sets up HTTPS support using Certbot.
+  hosts: pi
+  remote_user: pi
+  become: yes
+  vars_files:
+    - ./vars/auth.yml
+    - ./vars/nginx.yml
+  roles:
+    - nginxinc.nginx
+    - nginx-certbot

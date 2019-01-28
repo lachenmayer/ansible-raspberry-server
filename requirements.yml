@@ -1,3 +1,4 @@
 - src: geerlingguy.ntp
 - src: geerlingguy.security
 - src: nodesource.node
+- src: nginxinc.nginx
