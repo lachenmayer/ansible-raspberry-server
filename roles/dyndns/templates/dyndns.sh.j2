@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+HOST={{ dyndns_host }}
+DOMAIN={{ dyndns_domain }}
+PASSWORD={{ dyndns_password }}
+
+CURRENT_IP=$(host $HOST.$DOMAIN | sed 's/.* has address //')
+NEW_IP=$(curl https://icanhazip.com/ 2> /dev/null)
+
+if [[ "$CURRENT_IP" == "$NEW_IP" ]]; then
+  >&2 echo "DNS record already points to current IP address ($NEW_IP)."
+  exit
+fi
+
+RESPONSE=$(curl "https://dynamicdns.park-your-domain.com/update?host=$HOST&domain=$DOMAIN&password=$PASSWORD&ip=$NEW_IP" 2> /dev/null)
+
+if [[ $RESPONSE =~ "<ErrCount>0</ErrCount>" ]]; then
+  >&2 echo "Successfully updated IP address ($NEW_IP)."
+  exit
+else
+  >&2 echo "Got an error response from the dynamic DNS server:"
+  >&2 echo $RESPONSE
+  exit 1
+fi

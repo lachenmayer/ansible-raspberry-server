@@ -1,0 +1,26 @@
+- name: Create dyndns user
+  user:
+    name: dyndns
+    group: systemd-journal
+
+- name: Copy dyndns script
+  template:
+    src: ../templates/dyndns.sh.j2
+    dest: /home/dyndns/dyndns
+    owner: dyndns
+    group: systemd-journal
+    mode: 0700
+
+- name: Copy dyndns systemd service
+  template:
+    src: ../templates/dyndns.service.j2
+    dest: /etc/systemd/system/dyndns.service
+    owner: root
+    group: root
+
+- name: Copy dyndns systemd timer
+  template:
+    src: ../templates/dyndns.timer.j2
+    dest: /etc/systemd/system/dyndns.timer
+    owner: root
+    group: root

@@ -1,0 +1,11 @@
+[Unit]
+Description=update dynamic DNS once an hour once online
+Wants=network-online.target
+After=network-online.target
+
+[Timer]
+OnBootSec=5
+OnUnitActiveSec=1h
+
+[Install]
+WantedBy=timers.target

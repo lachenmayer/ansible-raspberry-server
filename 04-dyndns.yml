@@ -1,0 +1,8 @@
+- name: Sets up dynamic DNS to make the Pi accessible from the internet.
+  hosts: pi
+  remote_user: pi
+  become: yes
+  vars_files:
+    - ./vars/auth.yml
+  roles:
+    - dyndns

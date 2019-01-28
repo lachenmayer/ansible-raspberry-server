@@ -1,0 +1,8 @@
+[Unit]
+Description=dynamic DNS
+
+[Service]
+Type=oneshot
+ExecStart=/home/dyndns/dyndns
+User=dyndns
+Group=systemd-journal
