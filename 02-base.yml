@@ -1,4 +1,4 @@
-- name: Sets up user accounts and applies basic updates & hardening.
+- name: Sets up user accounts and applies basic updates & security.
   hosts: pi
   remote_user: pi
   become: yes
@@ -9,3 +9,4 @@
     - basics
     - geerlingguy.security
     - geerlingguy.ntp
+    - geerlingguy.firewall

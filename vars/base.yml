@@ -1,3 +1,14 @@
+# geerlingguy.firewall - see https://galaxy.ansible.com/geerlingguy/firewall
+
+firewall_allowed_tcp_ports:
+  - '22'
+  - '80'
+  - '443'
+firewall_allowed_udp_ports: []
+
+firewall_forwarded_tcp_ports: []
+firewall_forwarded_udp_ports: []
+
 # geerlingguy.security - see https://galaxy.ansible.com/geerlingguy/security
 
 security_ssh_port: 22
