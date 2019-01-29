@@ -1,0 +1,26 @@
+# Allow access on the LAN without HTTPS.
+server {
+    listen 80;
+    server_name raspberrypi.local;
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+    }
+}
+
+# Redirect internet traffic to HTTPS.
+server {
+    listen 80;
+    server_name {{ server_name }};
+    return 301 https://{{ server_name }}$request_uri;
+}
+
+# Certbot will add the HTTPS configuration to this server block.
+server {
+    listen 443 ssl;
+    server_name {{ server_name }};
+    location / {
+        proxy_pass http://127.0.0.1:8080;
+        proxy_set_header Host $host;
+    }
+}

@@ -1,32 +1,14 @@
-- name: Add stretch-backports repo
-  copy:
-    dest: /etc/apt/sources.list.d/stretch-backports.list
-    content: deb http://ftp.debian.org/debian stretch-backports main stretch-backports main
+- name: Remove example site config
+  file:
+    path: /etc/nginx/sites-enabled/default
+    state: absent
 
-- name: Add stretch-backports GPG key (1)
-  apt_key:
-    keyserver: pgpkeys.mit.edu
-    id: 8B48AD6246925553
+- name: Write nginx config
+  template:
+    src: ../templates/default.conf.j2
+    dest: /etc/nginx/conf.d/default.conf
+  notify:
+    - restart nginx
 
-- name: Add stretch-backports GPG key (2)
-  apt_key:
-    keyserver: pgpkeys.mit.edu
-    id: 7638D0442B90D010
-
-- name: apt update
-  apt:
-    update_cache: yes
-
-- name: Install certbot nginx package
-  apt:
-    name: python-certbot-nginx
-    default_release: stretch-backports
-
-- name: Run certbot
-  command: 'certbot -n --nginx --agree_tos --email {{ certbot_email }} --domains {{ server_name }}'
-  args:
-    creates: '/etc/letsencrypt/live/{{ server_name }}'
-  register: certbot_output
-
-- debug:
-    var: certbot_output
+- name: Set up certbot
+  include_tasks: certbot.yml

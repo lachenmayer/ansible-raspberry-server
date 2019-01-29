@@ -4,7 +4,6 @@
   become: yes
   vars_files:
     - ./vars/auth.yml
-    - ./vars/nginx.yml
   roles:
     - nginxinc.nginx
     - nginx-certbot
