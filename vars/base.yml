@@ -1,10 +1,11 @@
 # geerlingguy.firewall - see https://galaxy.ansible.com/geerlingguy/firewall
 
 firewall_allowed_tcp_ports:
-  - '22'
-  - '80'
-  - '443'
-firewall_allowed_udp_ports: []
+  - '22' # ssh
+  - '80' # http
+  - '443' # https
+firewall_allowed_udp_ports:
+  - '5353' # avahi - required to use raspberrypi.local address
 
 firewall_forwarded_tcp_ports: []
 firewall_forwarded_udp_ports: []
