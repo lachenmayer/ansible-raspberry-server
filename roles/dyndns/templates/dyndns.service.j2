@@ -1,8 +1,13 @@
 [Unit]
 Description=dynamic DNS
+After=network-online.target
+Wants=network-online.target
 
 [Service]
 Type=oneshot
 ExecStart=/home/dyndns/dyndns
 User=dyndns
 Group=systemd-journal
+
+[Install]
+WantedBy=multi-user.target

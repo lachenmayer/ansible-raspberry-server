@@ -24,3 +24,13 @@
     dest: /etc/systemd/system/dyndns.timer
     owner: root
     group: root
+
+- name: Enable dyndns service
+  service:
+    name: dyndns
+    enabled: yes
+
+- name: Enable dyndns timer
+  service:
+    name: dyndns.timer
+    enabled: yes
