@@ -26,15 +26,3 @@
       # Unset manpath so we can inherit from /etc/manpath via the `manpath` command
       unset MANPATH # delete if you already modified MANPATH elsewhere in your config
       export MANPATH="$NPM_PACKAGES/share/man:$(manpath)"
-
-- name: Install pm2
-  become_user: worker
-  command: npm install -g pm2
-  args:
-    creates: /home/worker/.npm-packages/bin/pm2
-
-- name: Start pm2 on boot
-  # This is a bit strange, but it's what pm2 tells you to run when you run `pm2 startup`.
-  shell: 'env PATH=$PATH:/usr/bin /home/worker/.npm-packages/bin/pm2 startup systemd -u worker --hp /home/worker'
-  args:
-    creates: /etc/systemd/system/pm2-worker.service
