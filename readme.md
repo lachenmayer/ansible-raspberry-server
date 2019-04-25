@@ -22,13 +22,16 @@ pip install ansible passlib
 
 Raspberry Pis don't have SSH enabled by default. This is to ensure that you don't accidentally make your Pi accessible to the internet with the default password still set. Otherwise [online weirdos will try to do bad things with your Pi](https://www.zdnet.com/article/linux-malware-enslaves-raspberry-pi-to-mine-cryptocurrency/).
 
-Open up your Terminal & run the following:
+To enable SSH, do the following:
 
-```
-touch /Volumes/boot/ssh
-```
+1. If you haven't done so already, insert the mini SD card into an SD adapter & plug it in to your computer (NOT the Raspberry Pi!)
+2. Open up your Terminal & run the following:
 
-(If you get an error that says `No such file or directory`, unplug & plug back in your SD card - you should have a drive called "boot" show up in the Finder.)
+    ```
+    touch /Volumes/boot/ssh
+    ```
+
+    (If you get an error that says `No such file or directory`, unplug & plug back in your SD card - you should have a drive called "boot" show up in the Finder.)
 
 # 2. Edit wi-fi settings
 
