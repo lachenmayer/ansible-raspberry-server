@@ -1,4 +1,4 @@
 - import_playbook: 02-base.yml
 - import_playbook: 03-node.yml
-- import_playbook: 04-dyndns.yml
+# - import_playbook: 04-dyndns.yml
 - import_playbook: 05-nginx.yml

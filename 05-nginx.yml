@@ -6,4 +6,4 @@
     - ./vars/auth.yml
   roles:
     - nginxinc.nginx
-    - nginx-certbot
+    # - nginx-certbot
